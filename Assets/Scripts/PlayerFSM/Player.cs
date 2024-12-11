@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public PlayerFishState FishState { get; private set; }
 
     public Animator Animator {  get; private set; }
-    [SerializeField] public GameObject exclamationMark; 
+    [SerializeField] public GameObject exclamationMark;
     [SerializeField] public GameObject fishCaughtPanel;
     [SerializeField] public GameObject fishCaughtImage;
     [SerializeField] public GameObject fishCaughtNameText;
@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     public Vector2 moveDirection;
     public float moveSpeed;
     [SerializeField] public Sprite[] sprites;
+
+    [SerializeField] public List<Fish> fishInventory;
 
     private void Awake()
     {

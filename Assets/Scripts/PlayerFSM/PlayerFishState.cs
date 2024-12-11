@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class PlayerFishState : PlayerState
 
     Vector3 exclamationLeftPos;
     Vector3 fishCaughtPanelLeftPos;
+
+    Fish fish;
 
     public PlayerFishState(Player player, PlayerStateMachine stateMachine) : base(player, stateMachine)
     {
@@ -48,6 +51,7 @@ public class PlayerFishState : PlayerState
         player.fishCaughtPanel.SetActive(false);
         player.exclamationMark.transform.position = exclamationLeftPos; // reset to original position, left is default
         player.fishCaughtPanel.transform.position = fishCaughtPanelLeftPos;
+        fish = null;
         base.Exit();
     }
 
@@ -86,6 +90,7 @@ public class PlayerFishState : PlayerState
         if (nibble & catchTimer > this.startTime + 2f)
         {
             nibble = false;
+            fish = null;
             player.Animator.SetBool("IsFishing", false);
             player.exclamationMark.SetActive(false);
             stateMachine.ChangeState(player.BoatState);
@@ -98,11 +103,11 @@ public class PlayerFishState : PlayerState
             player.exclamationMark.SetActive(false);
             if (nibble)
             {
-                Fish fish = FishManager.GetRandomFish(Rarity.common).Item1;
+                fish = FishManager.GetRandomFish(Rarity.common).Item1;
                 var tempSprite = Resources.Load<Sprite>($"FishSprites/{fish.speciesId}");
                 player.fishCaughtImage.GetComponent<UnityEngine.UI.Image>().sprite = tempSprite;
                 player.fishCaughtNameText.GetComponent<TMP_Text>().text = fish.name;
-                
+
                 Debug.Log(fish.name);
                 player.Animator.SetBool("FishCaught", true);
 
@@ -138,7 +143,9 @@ public class PlayerFishState : PlayerState
             player.Animator.SetBool("FishCaught", false);
             player.fishCaughtPanel.SetActive(false);
             stateMachine.ChangeState(player.BoatState);
-        }
 
+            player.fishInventory.Add(fish);
+            fish = null;
+        }
     }
 }

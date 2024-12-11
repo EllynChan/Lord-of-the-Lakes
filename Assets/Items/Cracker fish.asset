@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 764f995bceac34124af1765c9522e003, type: 3}
-  m_Name: Carp
+  m_Name: Cracker fish
   m_EditorClassIdentifier: 
   type: 0
-  price: 1
+  price: 0
   stackable: 1
-  image: {fileID: 21300000, guid: 4b047ffa6afbb4ae886c0a0e66151c62, type: 3}
-  id: carp
+  image: {fileID: 21300000, guid: d2f4a187a183c41d9ae61ebd8be56207, type: 3}
+  id: cracker_fish

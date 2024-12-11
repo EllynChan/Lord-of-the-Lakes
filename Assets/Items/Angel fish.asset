@@ -16,3 +16,4 @@ MonoBehaviour:
   price: 2
   stackable: 1
   image: {fileID: 21300000, guid: f030b796e6fdb4143a4a6bfbbc3e4bca, type: 3}
+  id: angle_fish

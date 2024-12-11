@@ -14,6 +14,7 @@ public class Item : ScriptableObject
 
     [Header("Both")]
     public Sprite image;
+    public string id;
 }
 
 public enum ItemType
